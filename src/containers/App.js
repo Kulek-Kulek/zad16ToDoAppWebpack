@@ -9,27 +9,45 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            currentTodo: '',
+            todos: []
         };
     }
-    addTodo(val){
+    addTodo(){
         const todo = {
-            text: val,
+            text: this.state.currentTodo,
             id: uuid.v4(),
         };
-        const data = [...this.state.data, todo];
-        this.setState({data});
+        this.setState({
+            todos: [...this.state.todos, todo]
+        });
     }
 
     removeTodo(id) {
-    const remainder = this.state.data.filter(todo => todo.id !== id);
-    this.setState({data: remainder});
+        const remainder = this.state.todos.filter(todo => todo.id !== id);
+        this.setState({todos: remainder});
     }
+
+    handleOnChange(ev){
+        this.setState({currentTodo: ev.target.value})
+    }
+
 
     render() {
       return (
         <div className={style.TodoApp}>
-          Tutaj pojawią się komponenty naszej aplikacji.
+            <form>
+                <input type="text" onChange={this.handleOnChange.bind(this)} />
+                <button type="button" onClick={this.addTodo.bind(this)}>Add Todo</button>
+            </form>
+            <ul>
+                {this.state.todos.map(todo => {
+                    return (<div key={todo.id}>
+                            {todo.text}
+                            <button type="button" onClick={this.removeTodo.bind(this, todo.id)}>Remove Todo</button>
+                        </div>)
+                })}
+            </ul>
         </div>
       );
     }
