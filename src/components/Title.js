@@ -1,9 +1,10 @@
+import React from 'react';
 
+class TodoTitle extends React.Component{
+    render(){
+        return <h2>{this.props.content}</h2>
+    }
+}
 
-const Title = props => <h1>{props.title}</h1>
-
-const one = "hello";
-    const two = "world"
-    console.log(`${one} ${two}`);
-
+export default TodoTitle;
 
