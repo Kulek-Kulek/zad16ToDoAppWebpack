@@ -39,18 +39,7 @@ module.exports = {
         filename: 'app.bundle.js'
     },
 
-    plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-        new OptimizeJsPlugin({
-            sourceMap: false
-        }),
-        new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            filename: 'index.html',
-            inject: 'body'
-        }),
-
-        ],
+    plugins: plugins,
 
     module: {
 
