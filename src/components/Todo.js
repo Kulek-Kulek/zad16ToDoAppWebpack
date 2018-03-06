@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './Todo.css';
 
-
 class Todo extends React.Component{
     removeItem(){
         this.props.removeAction(this.props.id);
